@@ -65,10 +65,13 @@
   </svg>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .logo {
   width: 150px;
   height: 30px;
   fill: white;
+  @media screen and (max-width: 768px) {
+    width: 120px;
+  }
 }
 </style>

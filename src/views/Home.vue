@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header/>
+    <product-slider/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Header from '@/components/Header'
+import ProductSlider from '@/components/ProductSwiper'
+import Footer from '@/components/Footer'
+import init from '@/smooth'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  components: {ProductSlider, Header, Footer},
+  mounted() {
+    this.$nextTick(() => {
+      init(this)
+    })
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  width: 100%;
+  height: 100vh;
+  background-color: #0d0d0d;
+}
+</style>

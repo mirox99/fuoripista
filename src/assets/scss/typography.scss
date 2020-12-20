@@ -1,19 +1,17 @@
-$fonts: "NotoSansGeorgian-Regular";
+$fonts: "DomaineSansDisplay-Light",
+'Grot10-Light', 'Grot10-LightItalic', 'Grot10-Semibold', 'Hijrnotes';
 
 
 @function font-url($file) {
-  @return url('../fonts/' + $file);
+  @return url('./assets/fonts/' + $file);
 }
 
 
 @each $font in $fonts {
   @font-face {
     font-family: $font;
-    src: font-url('#{$font}.eot') format('embedded-opentype'),
-    font-url('#{$font}.woff2') format('woff2'),
-    font-url('#{$font}.woff') format('woff'),
-    font-url('#{$font}.ttf') format('truetype');
+    src: font-url('#{$font}.woff2') format('woff2'),
+    font-url('#{$font}.woff') format('woff');
     font-style: normal;
-    unicode-range: U+10A0-10FF;
   }
 }
