@@ -1,0 +1,19 @@
+$fonts: "NotoSansGeorgian-Regular";
+
+
+@function font-url($file) {
+  @return url('../fonts/' + $file);
+}
+
+
+@each $font in $fonts {
+  @font-face {
+    font-family: $font;
+    src: font-url('#{$font}.eot') format('embedded-opentype'),
+    font-url('#{$font}.woff2') format('woff2'),
+    font-url('#{$font}.woff') format('woff'),
+    font-url('#{$font}.ttf') format('truetype');
+    font-style: normal;
+    unicode-range: U+10A0-10FF;
+  }
+}
