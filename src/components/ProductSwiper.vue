@@ -5,10 +5,10 @@
            :key="item.id"
            :class="{home:item.cover}"
            class="swiper-slide">
-        <div :class="{animated}" class="transform-container">
+        <div :class="{animated:contentAnimation}" class="transform-container">
           <div class="text-container">
-            <div @mouseover="toggleTextAnimation(true)"
-                 @mouseleave="toggleTextAnimation(false)"
+            <div @mouseover="contentAnimation=true"
+                 @mouseleave="contentAnimation=false"
                  class="text-content">
               <div class="header-container">
                 <div class="header" v-html="item.header "></div>
@@ -20,7 +20,7 @@
                   <path
                       d="M15.5 1c-1.5.5-2.6 1-3.4 1.3-3.2 1.5-6.3 3.2-9.2 5.2C1.2 8.6.9 8.9 1 9c.2.2 1.7-.4 4.6-1.5s5.9-2.2 8.8-3.3c2.5-.9 5-1.7 7.5-2.4.8-.2 2.1-.6 2.4-.3.1.1.2.3-1 1.3-1.1.9-2.2 1.6-3.4 2.4-1.4.9-3.2 2.2-2.8 2.6.3.4 2.1.3 3.2 0 .3-.1.6-.2 1-.3 7.9-2.5 16.1-4 24.5-4.4C57.5 2.8 60.2 5.6 68 6.3c6.6.7 22.3-3 31-2.8"
                       fill="none" stroke="#c39d42" stroke-width="2" stroke-linecap="round" stroke-miterlimit="3.998"
-                      style="stroke-dashoffset: 0px; stroke-dasharray: 134.176;"></path>
+                      style="stroke-dashoffset: 0; stroke-dasharray: 134.176;"></path>
                 </svg>
               </div>
             </div>
@@ -29,6 +29,7 @@
             <img
                 :src="item.src"
                 :srcset="item.srcset"
+                alt="swiper image"
                 class="swiper-image">
             <div class="image-shadow"></div>
           </div>
@@ -104,8 +105,7 @@ export default {
           discover: '<p><span data-title="discover">discover</span><span data-title="mia"> mia </span></p>',
         },
       ],
-      animated: false,
-      mouseLeaveTimeout: null,
+      contentAnimation: false,
     }
   },
   methods: {
@@ -114,9 +114,7 @@ export default {
         let mySwiper = new Swiper('.product-swiper', {
           direction: 'vertical',
           slidesPerView: 1,
-          mousewheel: {
-            releaseOnEdges: true,
-          },
+          mousewheel: true,
           touchReleaseOnEdges: true,
           pagination: {
             el: '.swiper-pagination',
@@ -135,19 +133,6 @@ export default {
           window.scrollTo({top: 0, behavior: 'smooth'});
         });
       })
-    },
-    toggleTextAnimation(value) {
-      // window.clearTimeout(this.mouseLeaveTimeout);
-
-      if (!value) {
-        this.animated = false
-
-        // this.mouseLeaveTimeout = setTimeout(() => {
-        //   this.animated = false
-        // }, 1000)
-      } else {
-        this.animated = true
-      }
     },
   },
   mounted() {
@@ -169,6 +154,7 @@ export default {
 
     .swiper-slide {
       overflow: hidden;
+      height: 100.03% !important;
 
       &.home {
         .swiper-image {

@@ -10,7 +10,7 @@
 import Header from '@/components/Header'
 import ProductSlider from '@/components/ProductSwiper'
 import Footer from '@/components/Footer'
-import init from '@/smooth'
+import init from '@/helper/smooth'
 
 export default {
   name: 'Home',

@@ -27,6 +27,7 @@ function SmoothScroll(target, speed, smooth, vm) {
 
     function scrolled(e) {
         e.preventDefault(); // disable default scrolling
+
         if (!slidesEnd) return
 
         let delta = normalizeWheelDelta(e)
@@ -52,7 +53,7 @@ function SmoothScroll(target, speed, smooth, vm) {
         let delta = (pos - target.scrollTop) / smooth
         target.scrollTop += delta
 
-        if (Math.abs(delta) > 0.5)
+        if (Math.abs(delta) > 1)
             requestFrame(update)
         else
             moving = false
